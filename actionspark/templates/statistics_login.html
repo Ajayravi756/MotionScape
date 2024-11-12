@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Statistics</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+      <!-- fevicon -->
+      <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+      <!-- font css -->
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <style>
+
+         body {
+            background-image: url('https://images.unsplash.com/photo-1588445396150-9b318274c76b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGpvZ2dpbmd8ZW58MHx8MHx8fDA%3D');
+
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        /* Update the styles for the statistics container */
+        .statistics_container {
+            padding: 6.5rem 0 5.375rem;
+            background-color: rgb(0 0 0 / 65%);
+            text-align: center;
+            border-radius: 15px; /* Add rounded corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        }
+        
+        /* Update the styles for the statistics content */
+        .statistics_content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px; /* Limit maximum width for responsiveness */
+            margin: 0 auto; /* Center horizontally */
+        }
+        
+        .statistics_content .cell {
+            width: calc(33.33% - 40px); /* Adjust width for responsiveness */
+            margin-bottom: 40px; /* Increase margin bottom for spacing */
+        }
+        
+        .statistics_content .counter-value {
+            color: #fff; /* White text color */
+            font: 700 3.5rem/4.25rem "Montserrat", sans-serif;
+            vertical-align: middle;
+        }
+        
+        .statistics_content .counter-info {
+            margin-bottom: 0;
+            color: #ff002d;
+            font: 400 0.875rem/1.25rem "Open Sans", sans-serif;
+            vertical-align: middle;
+        }
+        
+        
+      </style>
+     
+  </head>
+   <body>
+      <div class="header_section header_bg">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <!-- <a class="navbar-brand"href="index.html"><img src="images/logo.png"></a> -->
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'checkaction' %}">CheckAction</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_login' %}">About</a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <div class="login_bt">
+                         <ul>
+                             <li class="nav-item">
+                                 <a class="nav-link" href="{% url 'logout' %}">
+                                     <i class="fa fa-user" aria-hidden="true"></i>
+                                     <span>
+                                   LogOut
+                                 </span>
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </form>
+               </div>
+            </nav>
+         </div>
+      </div>
+
+<!-- STATISTICS section start -->
+<div class="blog_section layout_padding" style="white-space: nowrap; overflow-x: auto;">
+   <div class="container">
+       <div class="statistics_container">
+         <h1 class="about_taital" style="color: white;">STATISTICS</h1>
+<br>
+           <div id="counter" class="statistics_content">
+               <div class="cell">
+                   <div class="counter-value number-count" id="totalVideosCount">13000</div>
+                   <p class="counter-info">Total videos</p>
+               </div>
+               <div class="cell">
+                   <div class="counter-value number-count" id="totalClassesCount">101</div>
+                   <p class="counter-info">Total classes</p>
+               </div>
+               <div class="cell">
+                   <div class="counter-value number-count" id="accuracy">85&#37</div>
+                   <p class="counter-info">Accuracy (%)</p>
+               </div>
+           </div>
+       </div>
+   </div>
+</div>
+<!-- STATISTICS section end -->
+
+
+<!-- JavaScript to animate the counter -->
+<script>
+   function animateValue(id, start, end, duration) {
+       var range = end - start;
+       var current = start;
+       var increment = end > start ? 1 : -1;
+       var stepTime = Math.abs(Math.floor(duration / range));
+       var obj = document.getElementById(id);
+       var timer = setInterval(function () {
+           current += increment;
+           obj.textContent = current;
+           if (current == end) {
+               clearInterval(timer);
+           }
+       }, stepTime);
+   }
+
+   // Animate total videos count
+   animateValue("totalVideosCount", 12000, 13000, 3000); // Change the duration as needed
+
+   // Animate total classes count
+   animateValue("totalClassesCount", 0, 101, 3000); // Change the duration as needed
+
+   // Animate accuracy percentage
+   animateValue("accuracy", 0, 85, 3000); // Change the duration as needed
+</script>
+
+      
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <p class="copyright_text">ActionSpark <a href="https://html.design"></a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- copyright section end -->
+      
+      <!-- Javascript files-->
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/popper.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 'js/plugin.js' %}"></script>
+      <!-- sidebar -->
+      <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>

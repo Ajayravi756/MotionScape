@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Result</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- fevicon -->
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+    <!-- font css -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <style>
+        /* Body styles */
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2017/04/05/01/15/ocean-2203720_1280.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Result section styles */
+        .about_section {
+         padding-top: 50px;
+         padding-bottom: 50px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: calc(100vh - 110px);
+         margin-left: 250px; /* Adjusted left margin */ 
+     }
+
+        .label {
+        
+            padding: 30px; /* Adjusted padding */
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+          
+        }
+
+        .label h1 {
+            color: #fefefd;
+            font-size: 36px;
+            font-weight: 600;
+        
+        }
+
+        .label img {
+            max-width: 100%;
+            border-radius: 10px;
+         
+        }
+
+        .label2 {
+        
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .label2 h2 {
+            color: #4950
+            font-size: 24px;
+            font-weight: 700;
+        
+            text-align: center;
+        }
+
+        .label2 ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .label2 ul li {
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+</style>
+</head>
+<body>
+<div class="header_section header_bg">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- <a class="navbar-brand"href="index.html"><img src="images/logo.png"></a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about_login' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'checkaction' %}">CheckAction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'statistics_login' %}">Statistics</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="login_bt">
+                        <ul>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span>
+                                  LogOut
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- header section end -->
+<!-- result section start -->
+<div class="about_section layout_padding">
+    <div class="container">
+        <div class="label">
+         <h1 style="font-family: cursive;">Uploaded Video</h1>
+
+            <!-- Display the generated GIF or image -->
+            <img src="{{ result_image }}" alt="Generated Media">
+            <div class="label2">
+                <h2>Predicted Action</h2>
+                <ul>
+                    {% for item in predicted_class_label %}
+                    <li style="font-family: Arial, sans-serif; font-size: 35px; font-weight: bold; text-transform: uppercase;">Action: {{ item.action }}</li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- result section end -->
+<!-- copyright section start -->
+<div class="copyright_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="copyright_text">MotionScape <a href="https://html.design"></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- copyright section end -->
+<!-- Javascript files-->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'js/plugin.js' %}"></script>
+<!-- sidebar -->
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
+

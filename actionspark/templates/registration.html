@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register</title>
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.mCustomScrollbar.min.css' %}">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/fevicon.png' %}" type="image/gif" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- Custom CSS -->
+    <style>
+      /* General styles */
+      body, html {
+          height: 100%;
+          margin: 0;
+          background-image: url('https://images.unsplash.com/photo-1513530534585-c7b1394c6d51?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Add background image */
+          background-size: cover; /* Ensure the background image covers the entire page */
+      }
+      
+      .login_register {
+          {% comment %} background-color: rgba(242, 242, 242, 0.7); /* Semi-transparent light gray background */ {% endcomment %}
+          padding: 20px;
+          min-height: 100%;
+          overflow-y: auto; /* Enable vertical scrolling if needed */
+      }
+      
+      .login_container,
+      .register_container {
+          background-color: #fff;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      h1 {
+          color: #ff0000; /* Red color */
+      }
+      
+      .form-floating label {
+          color: #ff0000; /* Red color */
+      }
+      
+      .btn-outline-dark {
+          background-color: #ff0000; /* Red color */
+          color: #fff; /* White text */
+          border: none;
+          border-radius: 0; /* Remove border radius */
+          cursor: pointer;
+          transition: background-color 0.3s; /* Smooth transition for hover effect */
+      }
+      
+      .btn-outline-dark:hover {
+          background-color: #cc0000; /* Darker red color on hover */
+      }
+      
+      .btn-outline-dark:focus {
+          box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.5);
+      }
+      
+      /* Registration form specific styles */
+      .register_container {
+          margin-top: 20px;
+          max-width: 500px;
+      }
+      
+      .register_container h1 {
+          text-align: center;
+          font-size: 24px;
+      }
+      
+      .register_container form {
+          margin-top: 15px;
+      }
+      
+      .register_container .custom-table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+      
+      .register_container .custom-table th,
+      .register_container .custom-table td {
+          padding: 8px;
+          border-bottom: 1px solid #ccc;
+          font-size: 14px;
+      }
+      
+      .register_container .custom-table th {
+          background-color: #f2f2f2;
+          color: #333;
+      }
+      
+      .register_container .custom-table tbody tr:nth-child(even) {
+          background-color: #eaeaea;
+      }
+      
+      .register_container input[type="text"],
+      .register_container input[type="password"],
+      .register_container input[type="email"],
+      .register_container input[type="tel"] {
+          width: calc(100% - 20px);
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          margin: 8px 0;
+          font-size: 14px;
+      }
+      
+      .register_container .submit button {
+          background-color: #ff0000; /* Red color */
+          color: #fff; /* White text */
+          padding: 10px 20px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          display: block;
+          margin: 0 auto;
+      }
+      
+      .register_container .submit button:hover {
+          background-color: #cc0000; /* Darker red color on hover */
+      }
+      
+      /* Login form specific styles */
+      .login_container {
+          max-width: 500px;
+      }
+  
+      .login_container h1 {
+          text-align: center;
+          font-size: 24px;
+      }
+  
+      .login_container form {
+          margin-top: 15px;
+      }
+  
+      .login_container .form-floating label {
+          color: #ff0000; /* Red color */
+      }
+  
+      .login_container .btn-outline-dark {
+          background-color: #ff0000; /* Red color */
+          color: #fff; /* White text */
+          border: none;
+          border-radius: 0; /* Remove border radius */
+          cursor: pointer;
+          transition: background-color 0.3s; /* Smooth transition for hover effect */
+      }
+  
+      .login_container .btn-outline-dark:hover {
+          background-color: #cc0000; /* Darker red color on hover */
+      }
+  </style>
+  
+  
+  
+  
+  
+</head>
+<body>
+    <!-- Header Section -->
+<div class="header_section header_bg">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'registration' %}">Login/Register</a>
+                    </li>
+                    <!-- Add the Admin Login link here -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'admin_login' %}">Admin Login</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- header section ends-->
+
+<!-- Login and Registration Section -->
+    <div class="login_register">   
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <!-- Login Form -->
+                    <div class="col-lg-6" id="loginFormContainer">
+                        <div class="login_container">
+                            <h1>Login Here!</h1>
+                            <h2 class="text-danger">{{ msg }}</h2>
+                            <form action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-floating">
+                                    <input type="text" name="user" class="form-control" id="user1" placeholder="Enter Username" required>
+                                    <label for="user1">Username</label>
+                                </div>
+                                <br>
+                                <div class="form-floating">
+                                    <input type="password" name="passw" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-outline-dark">Login</button>
+                            </form>
+                            <br> 
+                            <!-- Show Registration Button -->
+                            <button id="showRegisterForm" class="btn btn-outline-dark">Click to Register</button>
+                        </div>
+                    </div>
+                    <!-- Registration Form (Initially Hidden) -->
+                    <div class="col-lg-6" id="registrationFormContainer" style="display: none;">
+                        <div class="register_container">
+                            <h1>REGISTRATION FORM</h1>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <table class="custom-table">
+                                    <!-- Your registration form fields go here -->
+                                    <tr>
+                                        <td><label for="pname" class="patient_name">Name:</label></td>
+                                        <td><input type="text" name="name" placeholder="Enter name here" id="pname" required></td>
+                                    </tr>
+                                    
+                                    
+                                    <tr>
+                                        <td><label for="uname">User name:</label></td>
+                                        <td><input type="text" placeholder="Enter user name" name="uname" id="uname" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="eml" class="email_id">Email:</label></td>
+                                        <td><input type="email" name="email" placeholder="eg: xyz@gmail.com" id="eml" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="pword">Password:</label></td>
+                                        <td><input type="password" id="pword" name="password"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="cnumber" class="contact_number">Contact number:</label></td>
+                                        <td><input type="tel" name="contact_number" placeholder="Enter number here" id="cnumber" required></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="submit button" style="position: relative;">
+                                                <button type="submit">Register</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div><!--/row-->
+            </div><!--/container-->
+        </section>
+    </div>
+
+<!-- Login/Register section ends-->    
+
+<!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <p class="copyright_text">MotionScape <a href="https://html.design"></a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+<!-- copyright section end -->
+
+<!-- JS -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+<script src="{% static 'js/plugin.js' %}"></script>
+<script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+<!-- Script to toggle visibility of registration form and hide login section -->
+<script>
+    document.getElementById('showRegisterForm').addEventListener('click', function() {
+        document.getElementById('registrationFormContainer').style.display = 'block';
+        document.getElementById('loginFormContainer').style.display = 'none'; // Hide the login form
+    });
+</script>
+</body>
+</html>

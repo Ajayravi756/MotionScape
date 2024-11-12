@@ -1,0 +1,18 @@
+<!-- pending_registrations.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Registrations</title>
+</head>
+<body>
+    <h1>Pending Registrations</h1>
+    <ul>
+        {% for user in pending_users %}
+            <li>{{ user.nam }} - {{ user.eml }} - <a href="{% url 'approve_user' user.id %}">Approve</a> | <a href="{% url 'reject_user' user.id %}">Reject</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
